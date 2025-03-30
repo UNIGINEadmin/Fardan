@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THR Idul Fitri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background dengan bulan dan bintang -->
+    <div class="background"></div>
+
+    <div class="container">
+        
+        <div class="celebration-text">
+            Selamat Hari Raya Idul Fitri
+        </div>
+        <div class="sub-text">
+            Mohon maaf lahir dan batin
+        </div>
+
+        <!-- Amplop Hijau -->
+        <div class="envelope-container" onclick="openEnvelope()">
+            <div class="envelope">
+                <div class="top-flap"></div>
+                <div class="bottom-flap"></div>
+                <div class="left-flap"></div>
+                <div class="right-flap"></div>
+                <div class="card" id="card">
+                    <div class="thr-text">
+                        THR Untukmu 🎁
+                    </div>
+                </div>
+                
+            </div>
+            <div class="from-text">
+               THR Dari <strong>FARDAN</strong>
+            </div>
+        </div>
+
+        QR Code    
+
+
+        <!-- Qr tidak berlaku -->
+        <div class="qr-container" id="qrBox">
+            <p>Scan QR untuk menerima THR: <br> Rp: -5.000</p>
+            <div class="qr-wrapper">
+                <img src="qr-dana.png" alt="QR Code Dana">
+                <div class="qr-invalid">QR Code sudah tidak berlaku</div>
+            </div>
+        </div>
+        
+         
+        <!-- qr BErlaku -->
+        <div class="qr-container" id="qrBox">
+            <p>Scan QR untuk menerima THR: <br> Rp: 2 .0 0</p>
+            <img src="qr-dana.png" alt="QR Code Dana">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

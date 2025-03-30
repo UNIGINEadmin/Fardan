@@ -1,0 +1,339 @@
+/* Tampilan dasar */
+body {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #0b132b, #1b2735);
+    color: white;
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* Background dengan bulan dan bintang emoji */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Animasi jatuh untuk emoji */
+.emoji {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+/* Animasi jatuh */
+@keyframes fall {
+    from { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Container utama */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    display: inline-block;
+    animation: fadeIn 2s ease-in-out;
+    color: black;
+    max-width: 90%;
+    text-align: center;
+}
+
+/* Amplop Hijau */
+.envelope-container {
+    position: relative;
+    width: 200px;
+    height: 140px;
+    margin: 20px auto;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 200px;
+    height: 120px;
+}
+
+/* Bagian bawah amplop */
+.bottom-flap {
+    width: 200px;
+    height: 100px;
+    background: #28a745;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 8px;
+}
+
+/* Bagian atas amplop */
+.top-flap {
+    width: 200px;
+    height: 80px;
+    background: #1e7e34;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    transition: opacity 0.5s ease-in-out, transform 0.6s ease-in-out;
+    transform-origin: top;
+}
+
+/* Samping kiri & kanan */
+.left-flap, .right-flap {
+    width: 100px;
+    height: 60px;
+    background: #2ecc71;
+    position: absolute;
+    top: 40px;
+}
+
+.left-flap {
+    left: 0;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.right-flap {
+    right: 0;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* Kartu THR */
+.card {
+    width: 180px;
+    height: 80px;
+    background: white;
+    color: black;
+    text-align: center;
+    line-height: 80px;
+    font-weight: bold;
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.6s ease-in-out, opacity 1s ease-in-out;
+    transform: translateY(10px);
+    opacity: 0;
+}
+
+/* QR Code */
+.qr-container {
+    display: none;
+    margin-top: 20px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.qr-container img {
+    width: 200px;
+    height: auto;
+}
+
+/* Animasi buka amplop */
+.open .top-flap {
+    transform: rotateX(180deg);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.6s ease-in-out;
+}
+
+/* Animasi kartu THR muncul */
+.open .card {
+    transform: translateY(-30px) scale(1.1);
+    opacity: 1;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-in;
+}
+
+/* Animasi bouncing kecil */
+@keyframes bounce {
+    0% { transform: translateY(-30px) scale(1.1); }
+    50% { transform: translateY(-35px) scale(1.15); }
+    100% { transform: translateY(-30px) scale(1.1); }
+}
+
+/* Aktifkan efek bounce */
+.open .card {
+    animation: bounce 0.6s ease-out 0.8s;
+}
+ 
+/* Tambahkan efek cahaya di sekitar amplop */
+.envelope-container {
+    position: relative;
+    width: 200px;
+    height: 140px;
+    margin: 20px auto;
+    cursor: pointer;
+    perspective: 1000px;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Tambahkan emoji bulan di tengah amplop */
+.envelope::before {
+    content: "🌙"; /* Emoji bulan */
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Hilangkan tutup saat amplop dibuka */
+.open .top-flap {
+    display: none;
+}
+
+/* Efek cahaya yang berdenyut */
+@keyframes glow {
+    0% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
+    50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9)); }
+    100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
+}
+
+.envelope-container {
+    animation: glow 1.5s infinite alternate;
+}
+
+/* Tambahkan sentuhan Ramadhan pada QR Box */
+.qr-container {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff3cd; /* Warna kuning lembut */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    text-align: center;
+    position: relative;
+    border: 2px solid #f8b400; /* Warna emas */
+    transform: scale(0.8);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Tambahkan emoji atau gambar Ramadhan di atas QR Code */
+.qr-container::before {
+    content: "🕌🌙✨ Selamat Idul Fitri ✨🌙🕌";
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    color: #d48806;
+    margin-bottom: 10px;
+}
+
+/* Efek glowing untuk border */
+@keyframes glow-border {
+    0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.4); }
+}
+
+.qr-container {
+    animation: glow-border 2s infinite alternate;
+}
+
+/* Styling untuk teks ucapan */
+.celebration-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: #d4af37; /* Warna emas */
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Tambahkan garis pemisah */
+.celebration-text::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 2px;
+    background: #d4af37;
+    margin: 8px auto;
+    border-radius: 5px;
+}
+
+/* Sub teks untuk Mohon Maaf */
+.sub-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* THR Untukmu 🎁 */
+.thr-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff8800;
+    text-align: center;
+    margin-top: 10px;
+    animation: bounce 1.5s infinite alternate;
+}
+
+/* Animasi sedikit untuk teks THR */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+.from-text {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.qr-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.qr-invalid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.5);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-20deg);
+    pointer-events: none;
+}
+
+.qr-invalid::before, 
+.qr-invalid::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: red;
+    top: 50%;
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.qr-invalid::after {
+    transform: rotate(-45deg);
+}
+
+
